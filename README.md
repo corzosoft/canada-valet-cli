@@ -14,7 +14,22 @@ This project is unofficial and is not affiliated with, endorsed by, or sponsored
 
 This tool is for data access and educational/analytical use only. It does not provide financial, investment, trading, legal, or tax advice.
 
+## Features
+
+- Fetch public Valet series observations.
+- Fetch public Valet group observations.
+- Search series and group metadata.
+- Show metadata for a series or group.
+- Export tidy data to CSV, JSON, or Parquet.
+- Validate observations for common data quality issues.
+- Cache responses locally to reduce repeated API calls.
+- Retry transient HTTP failures with exponential backoff.
+- Override the Valet base URL with `VALET_BASE_URL` or `--base-url`.
+- Run a local `doctor` check for setup and API connectivity.
+
 ## Install
+
+From PyPI, once a release is published:
 
 ```bash
 pip install canada-valet-cli
@@ -26,6 +41,12 @@ For Parquet export:
 pip install "canada-valet-cli[parquet]"
 ```
 
+Install directly from GitHub:
+
+```bash
+pip install "canada-valet-cli[parquet] @ git+https://github.com/corzosoft/canada-valet-cli.git"
+```
+
 Local development:
 
 ```bash
@@ -33,6 +54,12 @@ git clone https://github.com/corzosoft/canada-valet-cli.git
 cd canada-valet-cli
 pip install -e ".[dev,parquet]"
 ```
+
+Requirements:
+
+- Python 3.12 or newer.
+- Internet access to the public Bank of Canada Valet API.
+- `pyarrow` only if you need Parquet export.
 
 ## Quick Examples
 
