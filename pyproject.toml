@@ -1,0 +1,61 @@
+[project]
+name = "canada-valet-cli"
+version = "0.1.0"
+description = "A clean unofficial CLI for Bank of Canada Valet API data."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Open Source Contributors" }]
+keywords = ["bank-of-canada", "valet-api", "cli", "finance", "data"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+  "typer>=0.12",
+  "httpx>=0.27",
+  "pydantic>=2.7",
+  "rich>=13.7",
+  "pandas>=2.2",
+  "platformdirs>=4.2",
+  "tenacity>=8.3",
+]
+
+[project.optional-dependencies]
+parquet = ["pyarrow>=16.0"]
+dev = ["pytest>=8.2", "pytest-httpx>=0.30", "ruff>=0.6", "mypy>=1.10"]
+
+[project.urls]
+Homepage = "https://github.com/corzosoft/canada-valet-cli"
+Issues = "https://github.com/corzosoft/canada-valet-cli/issues"
+Documentation = "https://github.com/corzosoft/canada-valet-cli/tree/main/docs"
+
+[project.scripts]
+valet = "canada_valet_cli.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/canada_valet_cli"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
